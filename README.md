@@ -1,6 +1,10 @@
 # Kwyjibo
 
-TODO: Write a gem description
+Creating a Gem to represent Matrix and Sparse Matrix
+
+## Status
+
+[![Build Status](https://travis-ci.org/alu0100537291/kwyjibo.png?branch=master)](https://travis-ci.org/alu0100537291/kwyjibo)
 
 ## Installation
 
@@ -18,7 +22,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Gem under construction!
 
 ## Contributing
 
@@ -27,3 +31,10 @@ TODO: Write usage instructions here
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
+## Authors
+
+| ALUMNO | CORREO|
+| -------- | ------- |
+| José Alberto Pérez Melián | alu0100537291[AT]ull.edu.es |
+| Jéssica Alejandra Ramos Villarreal | alu0100537338[AT]ull.edu.es |
