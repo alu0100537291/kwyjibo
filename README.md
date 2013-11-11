@@ -2,6 +2,10 @@
 
 Creating a Gem to represent Matrix and Sparse Matrix
 
+## Class Inheritance
+
+We have a first class called Matriz where all Matrix will be stored and a subclass called Dispersa to represent a Sparse Matrix
+
 ## Status
 
 [![Build Status](https://travis-ci.org/alu0100537291/kwyjibo.png?branch=master)](https://travis-ci.org/alu0100537291/kwyjibo)
