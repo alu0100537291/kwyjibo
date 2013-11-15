@@ -26,7 +26,7 @@ describe Kwyjibo do
 		it "### Existe un metodo para saber si es una matriz dispersa"
 	end
 
-	describe "\n # Operaciones entre matrices densas" do
+	describe "\n # Operaciones con matrices densas" do
 		describe "\n  ## Suma de matrices densas \n" do
 			it "### Se pueden sumar matrices del mismo tamano"
 			it "### No se pueden sumar matrices de distinto tamano"
@@ -52,10 +52,15 @@ describe Kwyjibo do
 			it "### No se pueden multiplicar dos matrices si el numero de columnas de la primera es distinto al numero de de la segunda matriz"
 			it "### El resultado de multiplicar dos matrices debe ser una matriz con numero de filas igual a las filas de la primera matriz y numero de columnas igual al numero de columnas de la segunda matriz"
 		end
-	end
 
-	describe "\n # Operaciones entre matrices densas y escalares \n" do
-		it "Se puede multiplicar una matriz por un escalar"
-		it "Se puede dividir una matriz por un escalar"
+		describe "\n ##Operaciones entre matrices densas y escalares \n" do
+			it "Se puede multiplicar una matriz por un escalar"
+			it "Se puede dividir una matriz por un escalar"
+		end
+
+		describe "\n ## Opuesta de una matriz densa \n" do
+			it "Se puede calcular la opuesta de una matriz densa"
+			it "En el calculo de la matriz opuesta de una matriz se intercambian sus filas y columnas"
+		end
 	end
 end
