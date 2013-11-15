@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.version       = Kwyjibo::VERSION
   spec.authors       = ["José Alberto"]
   spec.email         = ["japmelian@gmail.com"]
-  spec.description   = %q{CoAuthor: Jéssica Alejandra}
+  spec.description   = %q{CoAuthor: Jéssica Alejandra Ramos Villarreal}
   spec.summary       = %q{LPP - Práctica 9}
   spec.homepage      = ""
   spec.license       = "MIT"
