@@ -6,11 +6,11 @@ describe Kwyjibo do
 	end
 
 	describe "\n # Matrix data \n" do
-		it "### Una matriz tiene su numero de filas almacenadas \n" do
+		it "### Una matriz tiene su numero de filas almacenadas" do
 			@a.rows.should eq(2)
 		end
 
-		it "### Una matriz tiene su numero de columnas almacenadas \n" do
+		it "### Una matriz tiene su numero de columnas almacenadas" do
 			@a.cols.should eq(2)
 		end
 	end
