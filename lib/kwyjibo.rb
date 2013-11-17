@@ -121,4 +121,119 @@ module Kwyjibo
             @data[i]
         end
     end
+
+    class Fraccion
+        include Comparable
+
+        attr_accessor :num, :denom
+
+        def initialize(a, b)
+            x = mcd(a,b)
+            @num = a/x
+            @denom = b/x
+
+            if (@num < 0 && @denom < 0)
+                @num = @num * -1
+                @denom = @denom * -1
+            end
+
+            if (@denom < 0)
+                @denom = @denom * -1
+                @num = @num * -1
+            end
+        end
+
+        def mcd(u, v)
+           u, v = u.abs, v.abs
+           while v != 0
+              u, v = v, u % v
+           end
+           u
+        end
+
+        def to_s
+            "#{@num}/#{@denom}"
+        end
+
+        def to_f
+            @num.to_f/@denom.to_f
+        end
+
+        def +(other)
+            if other.instance_of? Fixnum
+                c = Fraccion.new(other,1)
+                Fraccion.new(@num * c.denom + @denom * c.num, @denom * c.denom)
+            else
+                Fraccion.new(@num * other.denom + @denom * other.num, @denom * other.denom)
+            end
+        end
+
+        def -(other)
+            if other.instance_of? Fixnum
+                c = Fraccion.new(other,1)
+                Fraccion.new(@num * c.denom - @denom * c.num, @denom * c.denom)
+            else
+                Fraccion.new(@num * other.denom - @denom * other.num, @denom * other.denom)
+            end
+        end
+
+        def *(other)
+            if other.instance_of? Fixnum
+                c = Fraccion.new(other,1)
+                Fraccion.new(@num * c.num, @denom * c.denom)
+            else
+                Fraccion.new(@num * other.num, @denom * other.denom)
+            end
+        end
+
+        def /(other)
+            if other.instance_of? Fixnum
+                c = Fraccion.new(other,1)
+                Fraccion.new(@num * c.denom, @denom * c.num)
+            else
+                Fraccion.new(@num * other.denom, @denom * other.num)
+            end        
+        end
+
+        def %(other)
+            if other.instance_of? Fixnum
+                c = Fraccion.new(other,1)
+                division = Fraccion.new(@num * c.denom, @denom * c.num)
+            else
+                division = Fraccion.new(@num * other.denom, @denom * other.num)
+            end  
+            division.num % division.denom
+        end
+
+        def abs
+            @num = @num.abs
+            @denom = @denom.abs
+        end
+
+        def reciprocal
+            x = @num
+            @num = @denom
+            @denom = x
+        end
+
+        def -@
+            if (@num > 0)
+                @num = @num * -1
+            end
+        end
+
+        def <=>(other)
+            return nil unless (other.instance_of? Fraccion) || (other.instance_of? Fixnum)
+            if other.instance_of? Fixnum
+                c = Fraccion.new(other,1)
+                (@num.to_f/@denom.to_f) <=> (c.num.to_f/c.denom.to_f)
+            else
+                (@num.to_f/@denom.to_f) <=> (other.num.to_f/other.denom.to_f)
+            end
+        end
+
+        def coerce(other)
+            [self,other]
+        end
+    end
 end
