@@ -2,16 +2,30 @@ require 'spec_helper'
 
 describe Kwyjibo do
 	before :each do
-		@a = Kwyjibo::Matriz.new(2,2)
+		@a = Kwyjibo::DenseMatrix.new(2,2)
+		@a[0][0] = 1
+		@a[0][1] = 2
+		@a[1][0] = 3
+		@a[1][1] = 4
+
+		@b = Kwyjibo::SparseMatrix.new(2,2,0 => { 0 => 1, 1 => 2})
 	end
 
 	describe "\n # Matrix data \n" do
-		it "### Una matriz tiene su numero de filas almacenadas" do
+		it "### Una matriz densa tiene su numero de filas almacenadas" do
 			@a.rows.should eq(2)
 		end
 
-		it "### Una matriz tiene su numero de columnas almacenadas" do
+		it "### Una matriz densa tiene su numero de columnas almacenadas" do
 			@a.cols.should eq(2)
+		end
+
+		it "### Una matriz dispersa tiene su numero de filas almacenadas" do
+			@b.rows.should eq(2)
+		end
+
+		it "### Una matriz dispersa tiene su numero de columnas almacenadas" do
+			@b.cols.should eq(2)
 		end
 	end
 
