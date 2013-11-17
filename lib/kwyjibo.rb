@@ -61,4 +61,31 @@ module Kwyjibo
             c
         end
     end
+
+    class DenseMatrix < Matrix
+    attr_reader :data
+
+    def initialize(rows,cols)
+        @data = Array.new(rows) {Array.new(cols)}
+        super
+    end
+
+    def [](i)
+        @data[i]
+    end
+
+    def []=(i,value)
+        @data[i] = value
+    end
+
+    def tras()
+        c = Matriz.new(@cols, @rows)
+        c.rows.times do |i|
+            c.cols.times do |j|
+                c[i][j] = self[j][i]
+            end
+        end
+        c
+    end  
+end
 end
