@@ -29,23 +29,59 @@ describe Kwyjibo do
 		end
 	end
 
-	describe "\n # Almacenamiento de datos \n" do
-		it "### Se puede acceder a un elemento"
-		it "### Se puede acceder y consultar un elemento"
-	end
-
-	describe "\n # Tipos de matrices \n" do
-		it "### Existe un metodo para saber si es una matriz cuadrada"
-		it "### Existe un metodo para saber si es una matriz densa"
-		it "### Existe un metodo para saber si es una matriz dispersa"
-	end
-
 	describe "\n # Operaciones con matrices densas" do
 		describe "\n  ## Suma de matrices densas \n" do
-			it "### Se pueden sumar matrices del mismo tamano"
-			it "### No se pueden sumar matrices de distinto tamano"
-			it "### El resultado de sumar dos matrices debe ser una matriz"
-			it "### La suma de dos matrices debe dar una matriz del mismo tamano"
+			it "### Se pueden sumar matrices del mismo tamano" do
+				c = Kwyjibo::DenseMatrix.new(2,2)
+
+				c[0][0] = 1
+				c[0][1] = 2
+				c[1][0] = 3
+				c[1][1] = 4
+
+				d = @a + c
+
+				d[0][0].should eq(2)
+				d[0][1].should eq(4)
+				d[1][0].should eq(6)
+				d[1][1].should eq(8)
+			end
+
+			it "### No se pueden sumar matrices de distinto tamano" do
+				c = Kwyjibo::DenseMatrix.new(2,1)
+
+				c[0][0] = 1
+				c[1][0] = 3
+
+				expect {@a + c}.to raise_error(ArgumentError)
+			end
+
+			it "### El resultado de sumar dos matrices densas debe ser una matriz densa" do
+				c = Kwyjibo::DenseMatrix.new(2,2)
+
+				c[0][0] = 1
+				c[0][1] = 2
+				c[1][0] = 3
+				c[1][1] = 4
+
+				d = @a + c
+
+				d.should be_an_instance_of Kwyjibo::DenseMatrix
+			end
+
+			it "### La suma de dos matrices densas debe dar una matriz densa del mismo tamano" do
+				c = Kwyjibo::DenseMatrix.new(2,2)
+
+				c[0][0] = 1
+				c[0][1] = 2
+				c[1][0] = 3
+				c[1][1] = 4
+
+				d = @a + c
+
+				d.rows.should eq(2)
+				d.cols.should eq(2)
+			end
 		end
 
 		describe "\n  ## Resta de matrices densas \n" do
