@@ -101,4 +101,24 @@ module Kwyjibo
             @vector[i]
         end
     end
+
+    class SparseMatrix < Matrix
+        attr_reader :data
+
+        def initialize(rows,cols, h = {})
+            @data = Hash.new({})
+            for k in h.keys do
+                if h[k].is_a? SparseVector
+                    @data[k] = h[k]
+                else
+                    @data[k] = SparseVector.new(h[k])
+                end
+            end
+            super(rows,cols)
+        end
+
+        def [](i)
+            @data[i]
+        end
+    end
 end
