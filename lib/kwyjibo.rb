@@ -74,7 +74,7 @@ module Kwyjibo
         end
 
         def min
-            value = 0
+            value = self.max
             @rows.times do |i|
                 @cols.times do |j|
                     if self[i][j] != nil

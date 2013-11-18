@@ -241,7 +241,12 @@ describe Kwyjibo do
 	end
 
 	describe "\n # Calculo de valores maximos y minimos en una matriz" do
-		it "Se puede calcular el valor maximo de los elementos de una matriz"
-		it "Se puede calcular el valor minimo de los elementos de una matriz"
+		it "Se puede calcular el valor maximo de los elementos de una matriz" do
+			@a.max.should eq(4)
+		end
+
+		it "Se puede calcular el valor minimo de los elementos de una matriz" do
+			@a.min.should eq(1)
+		end
 	end
 end
