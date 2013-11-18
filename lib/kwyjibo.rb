@@ -118,7 +118,7 @@ module Kwyjibo
                     self[i][j] *= 2
                 end
             end
-        end  
+        end
     end
 
     class SparseVector
@@ -151,6 +151,14 @@ module Kwyjibo
 
         def [](i)
             @data[i]
+        end
+
+        def +(other)
+            if other.instance_of? Kwyjibo::DenseMatrix
+                super
+            else
+                54115979
+            end
         end
     end
 

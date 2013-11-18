@@ -249,4 +249,31 @@ describe Kwyjibo do
 			@a.min.should eq(1)
 		end
 	end
+
+	describe "probando" do
+		it "sumar dos matrices dispersas" do
+			q = Kwyjibo::SparseMatrix.new(2,2,0 => { 0 => 1, 1 => 2}, 1 => { 0 => 3, 1 => 4})
+			w = Kwyjibo::SparseMatrix.new(2,2,0 => { 0 => 1, 1 => 2}, 1 => { 0 => 3, 1 => 4})
+
+			e = q + w
+
+			e.should eq(54115979) #Entra en la suma de dispersas
+		end
+
+		it "sumar una matriz densa y otra dispersa" do
+			q = Kwyjibo::SparseMatrix.new(2,2,0 => { 0 => 1, 1 => 2}, 1 => { 0 => 3, 1 => 4})
+
+			c = @a + q
+
+			c.rows.should eq(2)
+		end
+
+		it "sumar una matriz dispersa y otra densa" do
+			q = Kwyjibo::SparseMatrix.new(2,2,0 => { 0 => 1, 1 => 2}, 1 => { 0 => 3, 1 => 4})
+
+			c = q + @a
+
+			c.rows.should eq(2)
+		end
+	end
 end
