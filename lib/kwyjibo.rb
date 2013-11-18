@@ -79,13 +79,21 @@ module Kwyjibo
         end
 
         def tras()
-            c = Matriz.new(@cols, @rows)
+            c = DenseMatrix.new(@cols, @rows)
             c.rows.times do |i|
                 c.cols.times do |j|
                     c[i][j] = self[j][i]
                 end
             end
             c
+        end
+
+        def x(value)
+            self.rows.times do |i|
+                self.cols.times do |j|
+                    self[i][j] *= 2
+                end
+            end
         end  
     end
 

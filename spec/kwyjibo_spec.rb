@@ -198,13 +198,45 @@ describe Kwyjibo do
 		end
 
 		describe "\n ##Operaciones entre matrices densas y escalares \n" do
-			it "Se puede multiplicar una matriz por un escalar"
-			it "Se puede dividir una matriz por un escalar"
+			it "Se puede multiplicar una matriz densa por un escalar" do
+				@a.x(2)
+
+				@a[0][0].should eq(2)
+				@a[0][1].should eq(4)
+				@a[1][0].should eq(6)
+				@a[1][1].should eq(8)
+			end
 		end
 
 		describe "\n ## Opuesta de una matriz densa \n" do
-			it "Se puede calcular la opuesta de una matriz densa"
-			it "En el calculo de la matriz opuesta de una matriz se intercambian sus filas y columnas"
+			it "Se puede calcular la opuesta de una matriz densa" do
+				c = @a.tras
+
+				c[0][0].should eq(1)
+				c[0][1].should eq(3)
+				c[1][0].should eq(2)
+				c[1][1].should eq(4)
+			end
+
+			it "En el calculo de la matriz opuesta de una matriz se intercambian sus filas y columnas" do
+				c = Kwyjibo::DenseMatrix.new(2,5)
+
+				c[0][0] = Kwyjibo::Fraccion.new(1,1)
+				c[0][1] = Kwyjibo::Fraccion.new(2,1)
+				c[0][2] = Kwyjibo::Fraccion.new(3,1)
+				c[0][3] = Kwyjibo::Fraccion.new(4,1)
+				c[0][4] = Kwyjibo::Fraccion.new(5,1)
+				c[1][0] = Kwyjibo::Fraccion.new(6,1)
+				c[1][1] = Kwyjibo::Fraccion.new(7,1)
+				c[1][2] = Kwyjibo::Fraccion.new(8,1)
+				c[1][3] = Kwyjibo::Fraccion.new(9,1)
+				c[1][4] = Kwyjibo::Fraccion.new(10,1)
+
+				d = c.tras
+
+				d.rows.should eq(5)
+				d.cols.should eq(2)
+			end
 		end
 	end
 end
