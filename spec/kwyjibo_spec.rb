@@ -239,4 +239,9 @@ describe Kwyjibo do
 			end
 		end
 	end
+
+	describe "\n # Calculo de valores maximos y minimos en una matriz" do
+		it "Se puede calcular el valor maximo de los elementos de una matriz"
+		it "Se puede calcular el valor minimo de los elementos de una matriz"
+	end
 end

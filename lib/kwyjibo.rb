@@ -60,6 +60,30 @@ module Kwyjibo
             end
             c
         end
+
+        def max
+            value = 0
+            @rows.times do |i|
+                @cols.times do |j|
+                    if self[i][j] != nil
+                        value = self[i][j] if self[i][j] > value
+                    end
+                end
+            end
+            value
+        end
+
+        def min
+            value = 0
+            @rows.times do |i|
+                @cols.times do |j|
+                    if self[i][j] != nil
+                        value = self[i][j] if self[i][j] < value
+                    end
+                end
+            end
+            value
+        end
     end
 
     class DenseMatrix < Matrix
