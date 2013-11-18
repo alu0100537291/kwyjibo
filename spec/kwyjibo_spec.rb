@@ -85,22 +85,116 @@ describe Kwyjibo do
 		end
 
 		describe "\n  ## Resta de matrices densas \n" do
-			it "### Se pueden restar matrices del mismo tamano"
-			it "### No se pueden restar matrices de distinto tamano"
-			it "### El resultado de restar dos matrices debe ser una matriz"
-			it "### La resta de dos matrices debe dar una matriz del mismo tamano"
+			it "### Se pueden restar matrices del mismo tamano" do
+				c = Kwyjibo::DenseMatrix.new(2,2)
+
+				c[0][0] = Kwyjibo::Fraccion.new(1,1)
+				c[0][1] = Kwyjibo::Fraccion.new(2,1)
+				c[1][0] = Kwyjibo::Fraccion.new(3,1)
+				c[1][1] = Kwyjibo::Fraccion.new(4,1)
+
+				d = @a - c
+
+				d[0][0].should eq(Kwyjibo::Fraccion.new(0,1))
+				d[0][1].should eq(Kwyjibo::Fraccion.new(0,1))
+				d[1][0].should eq(Kwyjibo::Fraccion.new(0,1))
+				d[1][1].should eq(Kwyjibo::Fraccion.new(0,1))
+			end
+
+			it "### No se pueden restar matrices de distinto tamano" do
+				c = Kwyjibo::DenseMatrix.new(2,1)
+
+				c[0][0] = Kwyjibo::Fraccion.new(1,1)
+				c[1][0] = Kwyjibo::Fraccion.new(3,1)
+
+				expect {@a - c}.to raise_error(ArgumentError)
+			end
+
+			it "### El resultado de restar dos matrices densas debe ser una matriz densa" do
+				c = Kwyjibo::DenseMatrix.new(2,2)
+
+				c[0][0] = 1
+				c[0][1] = 2
+				c[1][0] = 3
+				c[1][1] = 4
+
+				d = @a - c
+
+				d.should be_an_instance_of Kwyjibo::DenseMatrix
+			end
+
+			it "### La resta de dos matrices debe dar una matriz del mismo tamano" do
+				c = Kwyjibo::DenseMatrix.new(2,2)
+
+				c[0][0] = 1
+				c[0][1] = 2
+				c[1][0] = 3
+				c[1][1] = 4
+
+				d = @a - c
+
+				d.rows.should eq(2)
+				d.cols.should eq(2)
+			end
 		end
 
 		describe "\n  ## Multiplicacion de matrices densas \n" do
-			it "### Se pueden multiplicar dos matrices si el numero de columnas de la primera es igual al numero de de la segunda matriz"
-			it "### No se pueden multiplicar dos matrices si el numero de columnas de la primera es distinto al numero de de la segunda matriz"
-			it "### El resultado de multiplicar dos matrices debe ser una matriz con numero de filas igual a las filas de la primera matriz y numero de columnas igual al numero de columnas de la segunda matriz"
-		end
+			it "### Se pueden multiplicar dos matrices si el numero de columnas de la primera es igual al numero de de la segunda matriz" do
+				c = Kwyjibo::DenseMatrix.new(2,5)
 
-		describe "\n  ## Producto de matrices densas \n" do
-			it "### Se pueden multiplicar dos matrices si el numero de columnas de la primera es igual al numero de de la segunda matriz"
-			it "### No se pueden multiplicar dos matrices si el numero de columnas de la primera es distinto al numero de de la segunda matriz"
-			it "### El resultado de multiplicar dos matrices debe ser una matriz con numero de filas igual a las filas de la primera matriz y numero de columnas igual al numero de columnas de la segunda matriz"
+				c[0][0] = Kwyjibo::Fraccion.new(1,1)
+				c[0][1] = Kwyjibo::Fraccion.new(2,1)
+				c[0][2] = Kwyjibo::Fraccion.new(3,1)
+				c[0][3] = Kwyjibo::Fraccion.new(4,1)
+				c[0][4] = Kwyjibo::Fraccion.new(5,1)
+				c[1][0] = Kwyjibo::Fraccion.new(6,1)
+				c[1][1] = Kwyjibo::Fraccion.new(7,1)
+				c[1][2] = Kwyjibo::Fraccion.new(8,1)
+				c[1][3] = Kwyjibo::Fraccion.new(9,1)
+				c[1][4] = Kwyjibo::Fraccion.new(10,1)
+
+				d = @a * c
+
+				d[0][0].should eq(Kwyjibo::Fraccion.new(13,1))
+				d[0][1].should eq(Kwyjibo::Fraccion.new(16,1))
+				d[0][2].should eq(Kwyjibo::Fraccion.new(19,1))
+				d[0][3].should eq(Kwyjibo::Fraccion.new(22,1))
+				d[0][4].should eq(Kwyjibo::Fraccion.new(25,1))
+				d[1][0].should eq(Kwyjibo::Fraccion.new(27,1))
+				d[1][1].should eq(Kwyjibo::Fraccion.new(34,1))
+				d[1][2].should eq(Kwyjibo::Fraccion.new(41,1))
+				d[1][3].should eq(Kwyjibo::Fraccion.new(48,1))
+				d[1][4].should eq(Kwyjibo::Fraccion.new(55,1))
+			end
+
+			it "### No se pueden multiplicar dos matrices si el numero de columnas de la primera es distinto al numero de de la segunda matriz" do
+				c = Kwyjibo::DenseMatrix.new(1,2)
+
+				c[0][0] = 1
+				c[0][1] = Kwyjibo::Fraccion.new(2,1)
+
+				expect {@a * c}.to raise_error(ArgumentError)
+			end
+
+			it "### El resultado de multiplicar dos matrices debe ser una matriz con numero de filas igual a las filas de la primera matriz y numero de columnas igual al numero de columnas de la segunda matriz" do
+				c = Kwyjibo::DenseMatrix.new(2,5)
+
+				c[0][0] = Kwyjibo::Fraccion.new(1,1)
+				c[0][1] = Kwyjibo::Fraccion.new(2,1)
+				c[0][2] = Kwyjibo::Fraccion.new(3,1)
+				c[0][3] = Kwyjibo::Fraccion.new(4,1)
+				c[0][4] = Kwyjibo::Fraccion.new(5,1)
+				c[1][0] = Kwyjibo::Fraccion.new(6,1)
+				c[1][1] = Kwyjibo::Fraccion.new(7,1)
+				c[1][2] = Kwyjibo::Fraccion.new(8,1)
+				c[1][3] = Kwyjibo::Fraccion.new(9,1)
+				c[1][4] = Kwyjibo::Fraccion.new(10,1)
+
+				d = @a * c
+
+				d.rows.should eq(2)
+				d.cols.should eq(5)
+			end
 		end
 
 		describe "\n ##Operaciones entre matrices densas y escalares \n" do
