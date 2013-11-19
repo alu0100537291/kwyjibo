@@ -152,14 +152,6 @@ module Kwyjibo
         def [](i)
             @data[i]
         end
-
-        def +(other)
-            if other.instance_of? Kwyjibo::DenseMatrix
-                super
-            else
-                54115979
-            end
-        end
     end
 
     class Fraccion

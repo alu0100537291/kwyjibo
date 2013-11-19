@@ -198,7 +198,7 @@ describe Kwyjibo do
 		end
 
 		describe "\n ##Operaciones entre matrices densas y escalares \n" do
-			it "Se puede multiplicar una matriz densa por un escalar" do
+			it "### Se puede multiplicar una matriz densa por un escalar" do
 				@a.x(2)
 
 				@a[0][0].should eq(2)
@@ -209,7 +209,7 @@ describe Kwyjibo do
 		end
 
 		describe "\n ## Opuesta de una matriz densa \n" do
-			it "Se puede calcular la opuesta de una matriz densa" do
+			it "### Se puede calcular la opuesta de una matriz densa" do
 				c = @a.tras
 
 				c[0][0].should eq(1)
@@ -218,7 +218,7 @@ describe Kwyjibo do
 				c[1][1].should eq(4)
 			end
 
-			it "En el calculo de la matriz opuesta de una matriz se intercambian sus filas y columnas" do
+			it "### En el calculo de la matriz opuesta de una matriz se intercambian sus filas y columnas" do
 				c = Kwyjibo::DenseMatrix.new(2,5)
 
 				c[0][0] = Kwyjibo::Fraccion.new(1,1)
@@ -241,39 +241,68 @@ describe Kwyjibo do
 	end
 
 	describe "\n # Calculo de valores maximos y minimos en una matriz" do
-		it "Se puede calcular el valor maximo de los elementos de una matriz" do
+		it "### Se puede calcular el valor maximo de los elementos de una matriz" do
 			@a.max.should eq(4)
 		end
 
-		it "Se puede calcular el valor minimo de los elementos de una matriz" do
+		it "### Se puede calcular el valor minimo de los elementos de una matriz" do
 			@a.min.should eq(1)
 		end
 	end
 
-	describe "probando" do
-		it "sumar dos matrices dispersas" do
+	describe "\n # Operaciones con matrices dispersas \n" do
+		it "### Sumar dos matrices dispersas" do
 			q = Kwyjibo::SparseMatrix.new(2,2,0 => { 0 => 1, 1 => 2}, 1 => { 0 => 3, 1 => 4})
 			w = Kwyjibo::SparseMatrix.new(2,2,0 => { 0 => 1, 1 => 2}, 1 => { 0 => 3, 1 => 4})
 
-			e = q + w
+			c = q + w
 
-			e.should eq(54115979) #Entra en la suma de dispersas
+			c[0][0].should eq(2)
+			c[0][1].should eq(4)
+			c[1][0].should eq(6)
+			c[1][1].should eq(8)
 		end
 
-		it "sumar una matriz densa y otra dispersa" do
+		it "### Sumar una matriz densa y otra dispersa" do
 			q = Kwyjibo::SparseMatrix.new(2,2,0 => { 0 => 1, 1 => 2}, 1 => { 0 => 3, 1 => 4})
 
 			c = @a + q
 
-			c.rows.should eq(2)
+			c[0][0].should eq(2)
+			c[0][1].should eq(4)
+			c[1][0].should eq(6)
+			c[1][1].should eq(8)
 		end
 
-		it "sumar una matriz dispersa y otra densa" do
+		it "### Sumar una matriz dispersa y otra densa" do
 			q = Kwyjibo::SparseMatrix.new(2,2,0 => { 0 => 1, 1 => 2}, 1 => { 0 => 3, 1 => 4})
 
 			c = q + @a
 
+			c[0][0].should eq(2)
+			c[0][1].should eq(4)
+			c[1][0].should eq(6)
+			c[1][1].should eq(8)
+		end
+
+		it "### Multiplicacion de una matriz dispersa por una densa" do
+			q = Kwyjibo::SparseMatrix.new(2,2,0 => { 0 => Kwyjibo::Fraccion.new(5,1), 1 => 6})
+
+			c = @a * q
+
+			c[0][0].should eq(5)
+			c[0][1].should eq(6)
+			c[1][0].should eq(15)
+			c[1][1].should eq(Kwyjibo::Fraccion.new(18,1))
+		end
+
+		it "### El resultado de multiplicar dos matrices debe ser una matriz con numero de filas igual a las filas de la primera matriz y numero de columnas igual al numero de columnas de la segunda matriz" do
+			q = Kwyjibo::SparseMatrix.new(2,2,0 => { 0 => Kwyjibo::Fraccion.new(5,1), 1 => 6})
+
+			c = @a * q
+
 			c.rows.should eq(2)
+			c.cols.should eq(2)			
 		end
 	end
 end
