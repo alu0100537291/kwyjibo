@@ -3,9 +3,9 @@ require 'spec_helper'
 describe Kwyjibo do
 	before :each do
 		@a = Kwyjibo::DenseMatrix.new(2,2)
-		@a[0][0] = 1
-		@a[0][1] = 2
-		@a[1][0] = 3
+		@a[0][0] = Kwyjibo::Fraccion.new(1,1)
+		@a[0][1] = Kwyjibo::Fraccion.new(2,1)
+		@a[1][0] = Kwyjibo::Fraccion.new(3,1)
 		@a[1][1] = 4
 
 		@b = Kwyjibo::SparseMatrix.new(2,2,0 => { 0 => 1, 1 => 2})
@@ -240,7 +240,7 @@ describe Kwyjibo do
 		end
 	end
 
-	describe "\n # Calculo de valores maximos y minimos en una matriz" do
+	describe "\n # Calculo de valores maximos y minimos en una matriz \n" do
 		it "### Se puede calcular el valor maximo de los elementos de una matriz" do
 			@a.max.should eq(4)
 		end

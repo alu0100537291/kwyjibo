@@ -62,22 +62,28 @@ module Kwyjibo
         end
 
         def max
+            encontrado = false
             value = 0
-            
-            @rows.times do |i|
-                @cols.times do |j|
-                    if value == 0                        
+            i = -1
+
+            while encontrado == false
+                i += 1
+                j = 0
+                while j < self.cols
+                    if self[i][j] != nil and value == 0
                         value = self[i][j]
+                        encontrado = true
+                        break
+                    else
+                        j += 1
                     end
-                    break
                 end
-                break
             end
 
             @rows.times do |i|
                 @cols.times do |j|
-                    if self[i][j] != nil
-                        value = self[i][j] if self[i][j] > value
+                    if self[i][j] != nil && self[i][j] > value
+                        value = self[i][j]
                     end
                 end
             end
@@ -85,11 +91,28 @@ module Kwyjibo
         end
 
         def min
-            value = self.max
+            encontrado = false
+            value = 0
+            i = -1
+
+            while encontrado == false
+                i += 1
+                j = 0
+                while j < self.cols
+                    if self[i][j] != nil and value == 0
+                        value = self[i][j]
+                        encontrado = true
+                        break
+                    else
+                        j += 1
+                    end
+                end
+            end
+
             @rows.times do |i|
                 @cols.times do |j|
-                    if self[i][j] != nil
-                        value = self[i][j] if self[i][j] < value
+                    if self[i][j] != nil && self[i][j] < value
+                        value = self[i][j]
                     end
                 end
             end
@@ -269,9 +292,9 @@ module Kwyjibo
             return nil unless (other.instance_of? Fraccion) || (other.instance_of? Fixnum)
             if other.instance_of? Fixnum
                 c = Fraccion.new(other,1)
-                (@num.to_f/@denom.to_f) <=> (c.num.to_f/c.denom.to_f)
+                (c.num.to_f/c.denom.to_f) <=> (self.num.to_f/self.denom.to_f)
             else
-                (@num.to_f/@denom.to_f) <=> (other.num.to_f/other.denom.to_f)
+                (self.num.to_f/self.denom.to_f) <=> (other.num.to_f/other.denom.to_f)
             end
         end
 

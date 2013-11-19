@@ -64,12 +64,30 @@ class Test_Kwyjibo < Test::Unit::TestCase
 	end
 
 	def test_product
+		d = @a * @c
+		assert_equal(2,d.rows)
+		assert_equal(3,d.cols)
+		assert_equal(5,d[0][0])
+		assert_equal(6,d[0][1])
+		assert_equal(0,d[0][2])
+		assert_equal(15,d[1][0])
+		assert_equal(18,d[1][1])
+		assert_equal(0,d[1][2])
 	end
 
 	def test_traspose
+		d = @a.tras
+		assert_equal(2,d.cols)
+		assert_equal(2,d.rows)
+		assert_equal(1,d[0][0])
+		assert_equal(3,d[0][1])
+		assert_equal(2,d[1][0])
+		assert_equal(4,d[1][1])
 	end
 
 	def test_max
+		assert_equal(4,@a.max)
+		assert_equal(6,@c.max)
 	end
 
 	def test_min
