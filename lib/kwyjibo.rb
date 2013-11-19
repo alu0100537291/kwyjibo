@@ -63,6 +63,17 @@ module Kwyjibo
 
         def max
             value = 0
+            
+            @rows.times do |i|
+                @cols.times do |j|
+                    if value == 0                        
+                        value = self[i][j]
+                    end
+                    break
+                end
+                break
+            end
+
             @rows.times do |i|
                 @cols.times do |j|
                     if self[i][j] != nil
