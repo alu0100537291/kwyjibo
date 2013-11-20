@@ -305,4 +305,25 @@ describe Kwyjibo do
 			c.cols.should eq(2)			
 		end
 	end
+
+	describe "\n # EXPECTATIVA A CUMPLIR \n" do
+		it "Suma de una matriz densa y una matriz dispersa" do
+			f = Kwyjibo::DenseMatrix.new(2,2)
+			f[0][0] = 2
+			f[0][1] = 1
+			f[1][0] = -5
+			f[1][1] = Kwyjibo::Fraccion.new(-3,2)
+
+			g = Kwyjibo::SparseMatrix.new(2,2, 1 => {1 => 1})
+
+			h = f + g
+
+			h.rows.should eq(2)
+			h.cols.should eq(2)
+			h[0][0].should eq(2)
+			h[0][1].should eq(1)
+			h[1][0].should eq(-5)
+			h[1][1].should eq(Kwyjibo::Fraccion.new(-1,2))
+		end
+	end
 end
