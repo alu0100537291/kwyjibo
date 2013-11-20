@@ -91,5 +91,7 @@ class Test_Kwyjibo < Test::Unit::TestCase
 	end
 
 	def test_min
+		assert_equal(Kwyjibo::Fraccion.new(1,1),@a.min)
+		assert_equal(Kwyjibo::Fraccion.new(0,1),@c.min)
 	end
 end
